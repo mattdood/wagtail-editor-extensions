@@ -57,7 +57,7 @@ def font_size_chooser(request):
         form = ColourForm()
 
     return render_modal_workflow(
-        request, 'colourpicker/chooser/chooser.html', None,
+        request, 'font_size/chooser/chooser.html', None,
         {'form': form},
         json_data={'step': 'chooser'}
     )
