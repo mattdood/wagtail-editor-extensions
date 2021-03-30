@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from wagtailcolourpicker.utils.feature import get_feature_choices
+from wagtail_editor_extensions.utils.feature import get_feature_choices
 
 
 class ColourRadioSelect(forms.widgets.RadioSelect):

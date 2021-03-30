@@ -1,4 +1,4 @@
-from wagtailcolourpicker.utils.version import get_version
+from wagtail_editor_extensions.utils.version import get_version
 
 # major.minor.patch.release.number
 # release must be one of alpha, beta, rc, or final

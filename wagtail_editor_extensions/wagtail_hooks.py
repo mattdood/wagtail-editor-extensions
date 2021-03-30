@@ -7,15 +7,15 @@ from django.utils.translation import ugettext as _
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.core import hooks
 
-from wagtailcolourpicker.conf import get_setting
-from wagtailcolourpicker.utils.colour import register_all_colour_features
-from wagtailcolourpicker.utils.font_size import register_all_font_size_features
+from wagtail_editor_extensions.conf import get_setting
+from wagtail_editor_extensions.utils.colour import register_all_colour_features
+from wagtail_editor_extensions.utils.font_size import register_all_font_size_features
 
 @hooks.register('register_admin_urls')
 def register_admin_urls():
-    from wagtailcolourpicker import urls
+    from wagtail_editor_extensions import urls
     return [
-        path('wagtailcolourpicker/', include((urls, 'wagtailcolourpicker'))),
+        path('wagtail_editor_extensions/', include((urls, 'wagtail_editor_extensions'))),
     ]
 
 
@@ -46,7 +46,7 @@ def insert_editor_js():
     )
     js_includes += format_html(
         "<script>window.chooserUrls.colourChooser = '{0}';</script>",
-        reverse('wagtailcolourpicker:colour_chooser')
+        reverse('wagtail_editor_extensions:colour_chooser')
     )
     return js_includes
 

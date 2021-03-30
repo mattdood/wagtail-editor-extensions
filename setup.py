@@ -4,7 +4,7 @@ from setuptools import setup
 
 from codecs import open
 from os import path
-from wagtailcolourpicker import __version__
+from wagtail_editor_extensions import __version__
 
 
 install_requires = [

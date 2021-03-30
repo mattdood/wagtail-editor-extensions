@@ -1,20 +1,21 @@
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineStyleElementHandler
 
-from .feature import get_feature_name, get_feature_name_upper,get_setting
+from wagtail_editor_extensions.conf import get_setting
+from wagtail_editor_extensions.utils.feature import get_feature_name, get_feature_name_upper
 
 
-def register_font_size_feature(name, size, features):
-    feature_name = get_feature_name('font_size', name)
-    type_ = get_feature_name_upper('font_size', name)
+def register_color_feature(name, colour, features):
+    feature_name = get_feature_name('colour', name)
+    type_ = get_feature_name_upper('colour', name)
     tag = 'span'
-    detection = '%s[style="font-size: %s;"]' % (tag, size)
+    detection = '%s[style="color: %s;"]' % (tag, colour)
 
     control = {
         'type': type_,
         'icon': get_setting('ICON'),
-        'description': size,
-        'style': {'font-size': size}
+        'description': colour,
+        'style': {'color': colour}
     }
 
     features.register_editor_plugin(
@@ -29,7 +30,7 @@ def register_font_size_feature(name, size, features):
                     'element': tag,
                     'props': {
                         'style': {
-                            'font-size': size
+                            'color': colour
                         }
                     }
                 }
@@ -40,6 +41,6 @@ def register_font_size_feature(name, size, features):
     features.default_features.append(feature_name)
 
 
-def register_all_font_size_features(features):
-    for name, size in get_setting('FONT_SIZE'):
-        register_font_size_feature(name, size, features)
+def register_all_colour_features(features):
+    for name, colour in get_setting('COLOURS').items():
+        register_color_feature(name, colour, features)

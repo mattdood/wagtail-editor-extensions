@@ -6,7 +6,8 @@
 
 <div class="tab-content">
     <section id="form" class="active nice-padding">
-        <form class="colour-form" action="{% url 'wagtailcolourpicker:colour_chooser' %}" method="POST" novalidate>
+        <form class="colour-form" action="{% url 'wagtail_editor_extensions:colour_chooser' %}" method="POST"
+            novalidate>
             {% csrf_token %}
             <ul class="fields">
                 {% for field in form %}

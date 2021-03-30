@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'taggit',
 
     # app specific
-    'wagtailcolourpicker',
+    'wagtail_editor_extensions',
     'example',
 ]
 

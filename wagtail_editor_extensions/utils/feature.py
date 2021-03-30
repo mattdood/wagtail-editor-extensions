@@ -1,4 +1,4 @@
-from wagtailcolourpicker.conf import get_setting
+from wagtail_editor_extensions.conf import get_setting
 
 
 def get_feature_choices(feature_setting):

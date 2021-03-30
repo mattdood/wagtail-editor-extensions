@@ -1,7 +1,7 @@
 from wagtail.admin.modal_workflow import render_modal_workflow
 
-from wagtailcolourpicker.forms import ColourForm, FontSizeForm
-from wagtailcolourpicker.utils.feature import get_feature_name_list, get_feature_name_upper
+from wagtail_editor_extensions.forms import ColourForm, FontSizeForm
+from wagtail_editor_extensions.utils.feature import get_feature_name_list, get_feature_name_upper
 
 def colour_chooser(request):
     if request.method == 'POST':
