@@ -9,7 +9,7 @@ from wagtail.core import hooks
 
 from wagtailcolourpicker.conf import get_setting
 from wagtailcolourpicker.utils.colour import register_all_colour_features
-
+from wagtailcolourpicker.utils.font_size import register_all_font_size_features
 
 @hooks.register('register_admin_urls')
 def register_admin_urls():
@@ -46,7 +46,7 @@ def insert_editor_js():
     )
     js_includes += format_html(
         "<script>window.chooserUrls.colourChooser = '{0}';</script>",
-        reverse('wagtailcolourpicker:chooser')
+        reverse('wagtailcolourpicker:colour_chooser')
     )
     return js_includes
 
@@ -63,6 +63,33 @@ def register_textcolour_feature(features):
     control = {
         'type': type_,
         'icon': get_setting('ICON'),
+        'description': _('Text Colour'),
+    }
+
+    features.register_editor_plugin(
+        'draftail',
+        feature_name,
+        draftail_features.EntityFeature(
+            control,
+            js=['colourpicker/js/chooser.js']
+        )
+    )
+
+    features.default_features.append(feature_name)
+
+
+@hooks.register('register_rich_text_features')
+def register_textsize_feature(features):
+    # register all font size features
+    register_all_font_size_features(features)
+
+    # register the font size picker
+    feature_name = 'textsize'
+    type_ = feature_name.upper()
+
+    control = {
+        'type': type_,
+        'icon': 'arrows-up-down',
         'description': _('Text Colour'),
     }
 

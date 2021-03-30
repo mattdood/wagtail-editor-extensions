@@ -1,10 +1,10 @@
 from django.urls import path
 
-from wagtailcolourpicker.views import chooser
+from wagtailcolourpicker.views import colour_chooser
 
 
 app_name = 'wagtailcolourpicker'
 
 urlpatterns = [
-    path('chooser/', chooser, name='chooser'),
+    path('colour_chooser/', colour_chooser, name='colour_chooser'),
 ]
