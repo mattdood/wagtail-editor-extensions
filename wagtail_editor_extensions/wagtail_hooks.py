@@ -38,6 +38,7 @@ def insert_editor_js():
         # We require this file here to make sure it is loaded before the other.
         'wagtailadmin/js/draftail.js',
         'colourpicker/js/colourpicker.js',
+        'font_size/js/font_size_picker.js'
     ]
     js_includes = format_html_join(
         '\n',
@@ -47,6 +48,10 @@ def insert_editor_js():
     js_includes += format_html(
         "<script>window.chooserUrls.colourChooser = '{0}';</script>",
         reverse('wagtail_editor_extensions:colour_chooser')
+    )
+    js_includes += format_html(
+        "<script>window.chooserUrls.fontsizeChooser = '{0};</script>",
+        reverse('wagtail_editor_extensions:font_size_chooser')
     )
     return js_includes
 
@@ -90,7 +95,7 @@ def register_textsize_feature(features):
     control = {
         'type': type_,
         'icon': 'arrows-up-down',
-        'description': _('Text Colour'),
+        'description': _('Text size'),
     }
 
     features.register_editor_plugin(
@@ -98,7 +103,7 @@ def register_textsize_feature(features):
         feature_name,
         draftail_features.EntityFeature(
             control,
-            js=['colourpicker/js/chooser.js']
+            js=['font_size/js/font_size_chooser.js']
         )
     )
 
