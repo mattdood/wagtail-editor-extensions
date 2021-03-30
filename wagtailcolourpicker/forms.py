@@ -15,3 +15,10 @@ class ColourForm(forms.Form):
         widget=ColourRadioSelect,
         required=False
     )
+
+class FontSizeForm(forms.Form):
+    font_size = forms.ChoiceField(
+        label=_("Font size"),
+        choices=get_feature_choices('FONT_SIZE'),
+        required=False
+    )

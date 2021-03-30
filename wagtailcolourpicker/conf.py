@@ -14,7 +14,14 @@ SETTINGS_DEFAULTS = {
     ],
     'COLOURS': {
         'black': '#000000',
-        'white': '#ffffff'
+        'white': '#ffffff',
+        'green': '#009000'
+    },
+    'FONT_SIZE': {
+        '10': '10',
+        '12': '12',
+        '14': '14',
+        '16': '16'
     }
 }
 
