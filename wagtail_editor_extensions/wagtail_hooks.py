@@ -23,6 +23,7 @@ def register_admin_urls():
 def editor_css():
     css_files = [
         'colourpicker/css/colourpicker.css',
+        'font_size/css/font_size_picker.css',
     ]
     css_includes = format_html_join(
         '\n',
