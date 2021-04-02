@@ -6,6 +6,12 @@ from wagtail_editor_extensions.utils.feature import get_feature_name, get_featur
 
 
 def register_line_space_feature(name, line_space, features):
+    """This is called for each feature in settings.
+
+    Each of the dictionary entries is a new
+    feature for the editor to display.
+    They're created/registered here.
+    """
     feature_name = get_feature_name('line_space', name)
     type_ = get_feature_name_upper('line_space', name)
     tag = 'span'
@@ -42,5 +48,7 @@ def register_line_space_feature(name, line_space, features):
 
 
 def register_all_line_space_features(features):
+    """Dynamically create all features.
+    """
     for name, line_space in get_setting('LINE_SPACE').items():
         register_line_space_feature(name, line_space, features)

@@ -5,6 +5,12 @@ from wagtail_editor_extensions.utils.feature import get_feature_name, get_featur
 
 
 def register_font_size_feature(name, size, features):
+    """This is called for each feature in settings.
+
+    Each of the dictionary entries is a new
+    feature for the editor to display.
+    They're created/registered here.
+    """
     feature_name = get_feature_name('font_size', name)
     type_ = get_feature_name_upper('font_size', name)
     tag = 'span'
@@ -41,5 +47,7 @@ def register_font_size_feature(name, size, features):
 
 
 def register_all_font_size_features(features):
+    """Dynamically create all features.
+    """
     for name, size in get_setting('FONT_SIZE'):
         register_font_size_feature(name, size, features)

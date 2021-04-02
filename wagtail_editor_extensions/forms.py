@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail_editor_extensions.utils.feature import get_feature_choices
 
-
+# TODO: Remove these once the features work, they're redundant.
 class ColourRadioSelect(forms.widgets.RadioSelect):
     option_template_name = 'colourpicker/forms/widgets/colour_option.html'
 

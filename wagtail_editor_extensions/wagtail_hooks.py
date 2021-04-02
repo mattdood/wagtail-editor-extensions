@@ -16,6 +16,8 @@ from wagtail_editor_extensions.utils.line_space import register_all_line_space_f
 
 @hooks.register('register_admin_urls')
 def register_admin_urls():
+    """Register the URLs for the forms.
+    """
     from wagtail_editor_extensions import urls
     return [
         path('wagtail_editor_extensions/', include((urls, 'wagtail_editor_extensions'))),
@@ -24,6 +26,8 @@ def register_admin_urls():
 
 @hooks.register('insert_editor_css')
 def editor_css():
+    """Add the CSS required for each feature.
+    """
     css_files = [
         'colourpicker/css/colourpicker.css',
         'font_size/css/font_size_picker.css',
@@ -40,17 +44,22 @@ def editor_css():
 
 @hooks.register('insert_editor_js')
 def insert_editor_js():
+    """Add the JS required for each feature.
+    """
     js_files = [
         # We require this file here to make sure it is loaded before the other.
         'wagtailadmin/js/draftail.js',
         'colourpicker/js/colourpicker.js',
         'font_size/js/font_size_picker.js'
+        'line_space/js/line_space_picker.js'
     ]
     js_includes = format_html_join(
         '\n',
         '<script src="{0}"></script>',
         ((static(filename), ) for filename in js_files)
     )
+
+    # Modals with URLs for each of the features
     js_includes += format_html(
         "<script>window.chooserUrls.colourChooser = '{0}';</script>",
         reverse('wagtail_editor_extensions:colour_chooser')
@@ -72,6 +81,11 @@ def insert_editor_js():
 
 @hooks.register('register_rich_text_features')
 def register_textcolour_feature(features):
+    """Each of the colour choices is a separate feature.
+
+    These are registered then assigned to the
+    "main" feature.
+    """
     # register all colour features
     register_all_colour_features(features)
 
@@ -109,7 +123,7 @@ def register_textsize_feature(features):
     control = {
         'type': type_,
         'icon': 'title',
-        'description': _('Text size'),
+        'description': _('Text Size'),
     }
 
     features.register_editor_plugin(
@@ -125,10 +139,10 @@ def register_textsize_feature(features):
 
 @hooks.register('register_rich_text_features')
 def register_highlight_feature(features):
-    # register all font size features
+    # register all highlight features
     register_all_font_size_features(features)
 
-    # register the font size picker
+    # register the highlight picker
     feature_name = 'texthighlight'
     type_ = feature_name.upper()
 
@@ -152,10 +166,10 @@ def register_highlight_feature(features):
 
 @hooks.register('register_rich_text_features')
 def register_line_space_feature(features):
-    # register all font size features
+    # register all line space features
     register_all_font_size_features(features)
 
-    # register the font size picker
+    # register the line space picker
     feature_name = 'textlinespace'
     type_ = feature_name.upper()
 

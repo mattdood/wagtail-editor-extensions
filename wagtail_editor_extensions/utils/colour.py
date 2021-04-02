@@ -6,6 +6,12 @@ from wagtail_editor_extensions.utils.feature import get_feature_name, get_featur
 
 
 def register_color_feature(name, colour, features):
+    """This is called for each feature in settings.
+
+    Each of the dictionary entries is a new
+    feature for the editor to display.
+    They're created/registered here.
+    """
     feature_name = get_feature_name('colour', name)
     type_ = get_feature_name_upper('colour', name)
     tag = 'span'
@@ -42,5 +48,7 @@ def register_color_feature(name, colour, features):
 
 
 def register_all_colour_features(features):
+    """Dynamically create all features.
+    """
     for name, colour in get_setting('COLOURS').items():
         register_color_feature(name, colour, features)

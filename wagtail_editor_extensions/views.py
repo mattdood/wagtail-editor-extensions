@@ -4,6 +4,14 @@ from wagtail_editor_extensions.forms import ColourForm, FontSizeForm, HighlightF
 from wagtail_editor_extensions.utils.feature import get_feature_name_list, get_feature_name_upper
 
 def colour_chooser(request):
+    """Form view for the modal.
+
+    This will return a form or POST
+    and validate against the colour options
+    in settings.
+
+    This same view is repeated for each feature.
+    """
     if request.method == 'POST':
         form = ColourForm(request.POST)
 
@@ -11,10 +19,12 @@ def colour_chooser(request):
 
             feature_name = ''
             if form.cleaned_data.get('colour'):
+                # Get feature name and colour
                 feature_name = get_feature_name_upper('colour', form.cleaned_data.get('colour'))
 
             all_features = get_feature_name_list('COLOURS', 'colour')
 
+            # Render the new colour
             return render_modal_workflow(
                 request, None, None, None,
                 json_data={
@@ -26,6 +36,7 @@ def colour_chooser(request):
     else:
         form = ColourForm()
 
+    # Blank form
     return render_modal_workflow(
         request, 'colourpicker/chooser/chooser.html', None,
         {'form': form},
