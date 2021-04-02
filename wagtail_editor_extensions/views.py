@@ -48,13 +48,13 @@ def font_size_chooser(request):
             return render_modal_workflow(
                 request, None, None, None,
                 json_data={
-                    'step': 'colour_chosen',
+                    'step': 'font_size_chosen',
                     'toggled_feature': feature_name,
                     'all_features': all_features
                 }
             )
     else:
-        form = ColourForm()
+        form = FontSizeForm()
 
     return render_modal_workflow(
         request, 'font_size/chooser/chooser.html', None,
