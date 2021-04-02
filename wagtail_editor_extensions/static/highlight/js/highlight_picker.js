@@ -3,7 +3,7 @@ const EditorState = window.DraftJS.EditorState;
 const Modifier = window.DraftJS.Modifier;
 const RichUtils = window.DraftJS.RichUtils;
 
-class TextColourSource extends React.Component {
+class TextHighlightSource extends React.Component {
 
     constructor(props) {
         super(props);
@@ -82,6 +82,6 @@ class TextColourSource extends React.Component {
 }
 
 window.draftail.registerPlugin({
-    type: 'TEXTCOLOUR',
-    source: TextColourSource,
+    type: 'TEXTHIGHLIGHT',
+    source: TextHighlightSource,
 });
