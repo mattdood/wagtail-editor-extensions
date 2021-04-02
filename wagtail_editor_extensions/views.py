@@ -1,6 +1,6 @@
 from wagtail.admin.modal_workflow import render_modal_workflow
 
-from wagtail_editor_extensions.forms import ColourForm, FontSizeForm
+from wagtail_editor_extensions.forms import ColourForm, FontSizeForm, HighlightForm
 from wagtail_editor_extensions.utils.feature import get_feature_name_list, get_feature_name_upper
 
 def colour_chooser(request):
@@ -58,6 +58,36 @@ def font_size_chooser(request):
 
     return render_modal_workflow(
         request, 'font_size/chooser/chooser.html', None,
+        {'form': form},
+        json_data={'step': 'chooser'}
+    )
+
+
+def highlight_chooser(request):
+    if request.method == 'POST':
+        form = HighlightForm(request.POST)
+
+        if form.is_valid():
+
+            feature_name = ''
+            if form.cleaned_data.get('highlight'):
+                feature_name = get_feature_name_upper('highlight', form.cleaned_data.get('highlight'))
+
+            all_features = get_feature_name_list('HIGHLIGHT', 'highlight')
+
+            return render_modal_workflow(
+                request, None, None, None,
+                json_data={
+                    'step': 'highlight_chosen',
+                    'toggled_feature': feature_name,
+                    'all_features': all_features
+                }
+            )
+    else:
+        form = HighlightForm()
+
+    return render_modal_workflow(
+        request, 'highlight/chooser/chooser.html', None,
         {'form': form},
         json_data={'step': 'chooser'}
     )

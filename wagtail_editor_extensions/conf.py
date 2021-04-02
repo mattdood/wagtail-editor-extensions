@@ -17,6 +17,11 @@ SETTINGS_DEFAULTS = {
         'white': '#ffffff',
         'green': '#009000'
     },
+    'HIGHLIGHT': {
+        'black': '#000000',
+        'white': '#ffffff',
+        'green': '#009000'
+    },
     'FONT_SIZE': {
         '10': '10',
         '12': '12',

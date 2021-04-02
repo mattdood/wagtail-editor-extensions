@@ -10,6 +10,8 @@ from wagtail.core import hooks
 from wagtail_editor_extensions.conf import get_setting
 from wagtail_editor_extensions.utils.colour import register_all_colour_features
 from wagtail_editor_extensions.utils.font_size import register_all_font_size_features
+from wagtail_editor_extensions.utils.highlight import register_all_highlight_features
+
 
 @hooks.register('register_admin_urls')
 def register_admin_urls():
@@ -24,6 +26,7 @@ def editor_css():
     css_files = [
         'colourpicker/css/colourpicker.css',
         'font_size/css/font_size_picker.css',
+        'highlight/css/highlight_picker.css',
     ]
     css_includes = format_html_join(
         '\n',
@@ -51,8 +54,12 @@ def insert_editor_js():
         reverse('wagtail_editor_extensions:colour_chooser')
     )
     js_includes += format_html(
-        "<script>window.chooserUrls.fontsizeChooser = '{0};</script>",
+        "<script>window.chooserUrls.fontsizeChooser = '{0}';</script>",
         reverse('wagtail_editor_extensions:font_size_chooser')
+    )
+    js_includes += format_html(
+        "<script>window.chooserUrls.highlightChooser = '{0}';</script>",
+        reverse('wagtail_editor_extensions:highlight_chooser')
     )
     return js_includes
 
@@ -95,7 +102,7 @@ def register_textsize_feature(features):
 
     control = {
         'type': type_,
-        'icon': 'arrows-up-down',
+        'icon': 'aA',
         'description': _('Text size'),
     }
 
@@ -109,3 +116,30 @@ def register_textsize_feature(features):
     )
 
     features.default_features.append(feature_name)
+
+@hooks.register('register_rich_text_features')
+def register_highlight_feature(features):
+    # register all font size features
+    register_all_font_size_features(features)
+
+    # register the font size picker
+    feature_name = 'texthighlight'
+    type_ = feature_name.upper()
+
+    control = {
+        'type': type_,
+        'icon': 'pick',
+        'description': _('Text Highlight'),
+    }
+
+    features.register_editor_plugin(
+        'draftail',
+        feature_name,
+        draftail_features.EntityFeature(
+            control,
+            js=['highlight/js/highlight_chooser.js']
+        )
+    )
+
+    features.default_features.append(feature_name)
+

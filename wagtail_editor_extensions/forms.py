@@ -12,6 +12,10 @@ class FontSizeRadioSelect(forms.widgets.RadioSelect):
     option_template_name = 'font_size/forms/widgets/font_size_option.html'
 
 
+class HighlightRadioSelect(forms.widgets.RadioSelect):
+    option_template_name = 'highlight/forms/widgets/highlightoption.html'
+
+
 class ColourForm(forms.Form):
     colour = forms.ChoiceField(
         label=_("Colours"),
@@ -22,6 +26,14 @@ class ColourForm(forms.Form):
 
 
 class FontSizeForm(forms.Form):
+    font_size = forms.ChoiceField(
+        label=_("Font size"),
+        choices=get_feature_choices('FONT_SIZE'),
+        widget=FontSizeRadioSelect,
+        required=False
+    )
+
+class HighlightForm(forms.Form):
     font_size = forms.ChoiceField(
         label=_("Font size"),
         choices=get_feature_choices('FONT_SIZE'),
