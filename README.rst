@@ -1,14 +1,14 @@
-Wagtail Colour Picker
+Wagtail Editor Extensions
 =====================
 
-A colour picker for Wagtail's DraftJS editor.
+Text styling additions for Wagtail's DraftJS editor.
 
 Installation
 ------------
 
 .. code:: bash
 
-   pip install wagtailcolourpicker
+   pip install wagtail-editor-extensions
 
 Setup
 -----
@@ -19,7 +19,7 @@ Add to installed app:
 
    INSTALLED_APPS = [
       ...
-      'wagtailcolourpicker',
+      'wagtail_editor_extensions',
       ...
    ]
 
@@ -29,17 +29,27 @@ Settings
 .. code:: python
 
    # picker icon
-   WAGTAILCOLOURPICKER_ICON = ['...']
+   WAGTAILEDITOREXTENSIONS_ICON = ['...']
    # Add your colours
-   WAGTAILCOLOURPICKER_COLOURS = {
+   WAGTAILEDITOREXTENSIONS_COLOURS = {
       'black': '#000000',
       'white': '#ffffff'
    }
-
-Documentation
--------------
-
-Can be found on `readthedocs <http://wagtailcolourpicker.readthedocs.io/>`_.
+   # Add highlight colours
+   WAGTAILEDITOREXTENSIONS_HIGHLIGHT = {
+      'black': '#000000',
+      'white': '#ffffff'
+   }
+   # Add font sizes
+   WAGTAILEDITOREXTENSIONS_FONT_SIZE = {
+      '10': '10',
+      '12': '12'
+   }
+   # Add line spacing
+   WAGTAILEDITOREXTENSIONS_LINE_SPACE = {
+      '1.0': '1.0',
+      '1.15': '1.15'
+   }
 
 Screenshots
 -----------
@@ -61,25 +71,19 @@ Clone the repo
 
 .. code:: bash
 
-    $ git clone https://github.com/AccentDesign/wagtailcolourpicker.git
+    $ git clone https://github.com/mattdood/wagtail-editor-extensions.git
 
 Run the docker container
 
 .. code:: bash
 
-    $ cd wagtailcolourpicker
+    $ cd wagtail-editor-extensions
     $ docker-compose up
 
 Create yourself a superuser
 
 .. code:: bash
 
-    $ docker-compose exec app bash
-    $ python manage.py createsuperuser
+    $ docker-compose run --rm app python manage.py createsuperuser
 
 Go to http://127.0.0.1:8000/cms and add a new basic page
-
-Testing
--------
-
-TODO
