@@ -2,6 +2,12 @@
 Changelog
 *********
 
+0.0.7
+-----
+
+* Added font size, text highlight, and line spacing 
+* Updating with new fork, name, docs, and contact
+
 0.0.6
 -----
 

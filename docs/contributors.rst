@@ -6,7 +6,7 @@ People that have helped in any way shape or form to get to where we are, many th
 In our team
 -----------
 
-* `Stuart George <https://github.com/stuartaccent>`_
+* `Matthew Wimberly <https://github.com/mattdood>`_
 
 In the community
 ----------------
