@@ -11,6 +11,7 @@ from wagtail_editor_extensions.conf import get_setting
 from wagtail_editor_extensions.utils.colour import register_all_colour_features
 from wagtail_editor_extensions.utils.font_size import register_all_font_size_features
 from wagtail_editor_extensions.utils.highlight import register_all_highlight_features
+from wagtail_editor_extensions.utils.line_space import register_all_line_space_features
 
 
 @hooks.register('register_admin_urls')
@@ -27,6 +28,7 @@ def editor_css():
         'colourpicker/css/colourpicker.css',
         'font_size/css/font_size_picker.css',
         'highlight/css/highlight_picker.css',
+        'line_space/css/line_space_picker.css',
     ]
     css_includes = format_html_join(
         '\n',
@@ -60,6 +62,10 @@ def insert_editor_js():
     js_includes += format_html(
         "<script>window.chooserUrls.highlightChooser = '{0}';</script>",
         reverse('wagtail_editor_extensions:highlight_chooser')
+    )
+    js_includes += format_html(
+        "<script>window.chooserUrls.linespaceChooser = '{0}';</script>",
+        reverse('wagtail_editor_extensions:line_space_chooser')
     )
     return js_includes
 
@@ -102,7 +108,7 @@ def register_textsize_feature(features):
 
     control = {
         'type': type_,
-        'icon': 'aA',
+        'icon': 'title',
         'description': _('Text size'),
     }
 
@@ -138,6 +144,33 @@ def register_highlight_feature(features):
         draftail_features.EntityFeature(
             control,
             js=['highlight/js/highlight_chooser.js']
+        )
+    )
+
+    features.default_features.append(feature_name)
+
+
+@hooks.register('register_rich_text_features')
+def register_line_space_feature(features):
+    # register all font size features
+    register_all_font_size_features(features)
+
+    # register the font size picker
+    feature_name = 'textlinespace'
+    type_ = feature_name.upper()
+
+    control = {
+        'type': type_,
+        'icon': 'arrows-up-down',
+        'description': _('Line Spacing'),
+    }
+
+    features.register_editor_plugin(
+        'draftail',
+        feature_name,
+        draftail_features.EntityFeature(
+            control,
+            js=['line_space/js/line_space_chooser.js']
         )
     )
 

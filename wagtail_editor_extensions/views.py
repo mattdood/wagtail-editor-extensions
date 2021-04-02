@@ -1,6 +1,6 @@
 from wagtail.admin.modal_workflow import render_modal_workflow
 
-from wagtail_editor_extensions.forms import ColourForm, FontSizeForm, HighlightForm
+from wagtail_editor_extensions.forms import ColourForm, FontSizeForm, HighlightForm, LineSpaceForm
 from wagtail_editor_extensions.utils.feature import get_feature_name_list, get_feature_name_upper
 
 def colour_chooser(request):
@@ -91,3 +91,34 @@ def highlight_chooser(request):
         {'form': form},
         json_data={'step': 'chooser'}
     )
+
+
+def line_space_chooser(request):
+    if request.method == 'POST':
+        form = LineSpaceForm(request.POST)
+
+        if form.is_valid():
+
+            feature_name = ''
+            if form.cleaned_data.get('line_space'):
+                feature_name = get_feature_name_upper('line_space', form.cleaned_data.get('line_space'))
+
+            all_features = get_feature_name_list('LINE_SPACE', 'line_space')
+
+            return render_modal_workflow(
+                request, None, None, None,
+                json_data={
+                    'step': 'line_space_chosen',
+                    'toggled_feature': feature_name,
+                    'all_features': all_features
+                }
+            )
+    else:
+        form = LineSpaceForm()
+
+    return render_modal_workflow(
+        request, 'line_space/chooser/chooser.html', None,
+        {'form': form},
+        json_data={'step': 'chooser'}
+    )
+
