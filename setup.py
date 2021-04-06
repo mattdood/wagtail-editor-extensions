@@ -52,9 +52,9 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Framework :: Django',
-        'Framework :: Django :: 2.2.8',
+        'Framework :: Django :: 2.0',
         'Framework :: Wagtail',
-        'Framework :: Wagtail :: 2.6.2',
+        'Framework :: Wagtail :: 2',
         'Topic :: Internet :: WWW/HTTP :: Site Management',
     ],
 )
