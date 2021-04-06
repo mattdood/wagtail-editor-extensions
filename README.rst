@@ -1,5 +1,5 @@
 Wagtail Editor Extensions
-=====================
+=========================
 
 Text styling additions for Wagtail's DraftJS editor.
 
