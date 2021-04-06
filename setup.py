@@ -34,7 +34,7 @@ setup(
     download_url='https://pypi.python.org/pypi/wagtail-editor-extensions',
     license='MIT',
     packages=[
-        'wagtail-editor-extensions'
+        'wagtail_editor_extensions'
     ],
     install_requires=install_requires,
     extras_require={
